@@ -2,24 +2,19 @@
 
 <%= form_for :article, url: articles_path do |f| %>
 	<p>
-		<%= f.label :keywords %><br />
-		<p> 
-			<%= f.check_box :field, {:class => "keywords"}, "1", "0" %>
-			Keyword 1
+		<p>
+			<%= f.label "Keywords" %>
+			<%= f.collection_check_boxes :keywords_id_in_any, Keyword.all, :id, :name do |k| %>
+				<%= k.check_box %>
+				<%= k.label %>
+			<% end %>
 		</p>
-		<p> 
-		<%= f.check_box :field, {:class => "keywords"}, "1", "0" %>
-		Keyword 2 
-		</p>
-		<p> 
-		<%= f.check_box :field, {:class => "keywords"}, "1", "0" %>
-		Keyword 3
-		</p>
+
 	</p>
 
 	<p>
-		<%= f.label :linkSource %><br />
-		<%= f.text_field :linkSource %>
+		<%= f.label :link_source %><br />
+		<%= f.text_field :link_source %>
 	</p>
 
 	<p>
@@ -33,8 +28,8 @@
 	</p>	
 
 	<p>
-		<%= f.label :imageLink %><br />
-		<%= f.text_field :imageLink %>
+		<%= f.label :image_link %><br />
+		<%= f.text_field :image_link %>
 	</p>
 
 	<p>

@@ -10,7 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316192348) do
+ActiveRecord::Schema.define(version: 20170321073641) do
+
+  create_table "articles", force: :cascade do |t|
+    t.string   "link_source"
+    t.string   "title"
+    t.text     "description"
+    t.string   "image_link"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "join_table_keyword_article", force: :cascade do |t|
+    t.integer  "keyword_id", null: false
+    t.integer  "article_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "keywords", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
