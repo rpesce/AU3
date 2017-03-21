@@ -1,17 +1,45 @@
-<h1> New </h1>
+<h1>Adding a new article</h1>
 
-<%= form_for :article do |f| %>
+<%= form_for :article, url: articles_path do |f| %>
+	<p>
+		<%= f.label :keywords %><br />
+		<p> 
+			<%= f.check_box :field, {:class => "keywords"}, "1", "0" %>
+			Keyword 1
+		</p>
+		<p> 
+		<%= f.check_box :field, {:class => "keywords"}, "1", "0" %>
+		Keyword 2 
+		</p>
+		<p> 
+		<%= f.check_box :field, {:class => "keywords"}, "1", "0" %>
+		Keyword 3
+		</p>
+	</p>
+
+	<p>
+		<%= f.label :linkSource %><br />
+		<%= f.text_field :linkSource %>
+	</p>
+
 	<p>
 		<%= f.label :title %><br />
 		<%= f.text_field :title %>
 	</p>
 
 	<p>
-		<%= f.label :text %><br />
-		<%= f.text_area :text %>
+		<%= f.label :description %><br />
+		<%= f.text_area :description %>
 	</p>	
+
+	<p>
+		<%= f.label :imageLink %><br />
+		<%= f.text_field :imageLink %>
+	</p>
 
 	<p>
 		<%= f.submit %>
 	</p>
 <% end %>
+
+<%= link_to 'Back', articles_path %>

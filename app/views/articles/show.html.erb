@@ -1,0 +1,20 @@
+<h1>Show view</h1>
+
+<p>
+	<strong> Keywords </strong>
+	<%= @article.keywords %>
+	
+	<strong> Link Source </strong>
+	<%= @article.linkSource %>
+
+	<strong> Title </strong>
+	<%= @article.title %>
+
+	<strong> Description </strong>
+	<%= @article.description %>
+
+	<strong> Image link </strong>
+	<%= @article.imageLink %>
+</p>
+
+<%= link_to 'Back', articles_path %>
