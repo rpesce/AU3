@@ -2,7 +2,7 @@
 
 <p>
 	<strong> Keywords </strong>
-	<%= @article.keywords %>
+	<%= @article.keywords.map(&:name).sort.join(", ") %>
 	
 	<strong> Link Source </strong>
 	<%= @article.link_source %>

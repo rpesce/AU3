@@ -1,3 +1,4 @@
 class Article < ApplicationRecord
-	has_and_belongs_to_many :keywords
+	has_many :article_keywords
+	has_many :keywords, through: :article_keywords
 end

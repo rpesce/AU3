@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321073641) do
+ActiveRecord::Schema.define(version: 20170321231004) do
+
+  create_table "article_keywords", force: :cascade do |t|
+    t.integer  "article_id"
+    t.integer  "keyword_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "articles", force: :cascade do |t|
     t.string   "link_source"
@@ -19,13 +26,6 @@ ActiveRecord::Schema.define(version: 20170321073641) do
     t.string   "image_link"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "join_table_keyword_article", force: :cascade do |t|
-    t.integer  "keyword_id", null: false
-    t.integer  "article_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "keywords", force: :cascade do |t|

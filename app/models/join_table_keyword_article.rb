@@ -1,2 +1,0 @@
-class JoinTableKeywordArticle < ApplicationRecord
-end

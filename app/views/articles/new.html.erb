@@ -2,14 +2,9 @@
 
 <%= form_for :article, url: articles_path do |f| %>
 	<p>
-		<p>
-			<%= f.label "Keywords" %>
-			<%= f.collection_check_boxes :keywords_id_in_any, Keyword.all, :id, :name do |k| %>
-				<%= k.check_box %>
-				<%= k.label %>
-			<% end %>
-		</p>
-
+		<%= f.collection_check_boxes :keyword_ids, Keyword.all, :id, :name do |k| %>
+			<% k.label {k.check_box + k.text}%>
+		<% end %>
 	</p>
 
 	<p>
