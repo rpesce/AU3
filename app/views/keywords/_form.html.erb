@@ -1,0 +1,10 @@
+<%= form_for :keyword, url: keywords_path do |k| %>
+	<p>
+		<%= k.label :name %>
+		<%= k.text_field :name %>
+	</p>
+	
+	<p>
+	<%= k.submit %>
+	</p>
+<% end %>

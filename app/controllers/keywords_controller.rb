@@ -17,16 +17,27 @@ class KeywordsController < ApplicationController
 
 	def create
 		@keyword = Keyword.new(keyword_params)
-		@keyword.save
-		redirect_to @keyword
+		if @keyword.save
+			flash[:notice] = 'Keyword added'
+			redirect_to @keyword
+		else
+			render :new
+		end
 	end
 
 	def update
-		@keyword.update(keyword_params)
+		if @keyword.update(keyword_params)
+			flash[:notice] = 'Keyword updated'
+			redirect_to keyword_path(@keyword)
+		else
+			render :edit
+		end
 	end
 
 	def destroy
 		@keyword.destroy
+		flash[:notice] = 'Keyword deleted'
+		redirect_to keywords_path
 	end
 
 private

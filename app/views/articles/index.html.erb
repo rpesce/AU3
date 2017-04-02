@@ -1,25 +1,5 @@
 <h1> Articles index </h1>
 
-<table>
-	<tr>
-		<th>Keywords</th>
-		<th>Link Source</th>
-		<th>Title</th>
-		<th>Description</th>
-		<th>Image link</th>
-	</tr>
-
-	<% @articles.each do |article| %>
-		<tr>
-			<td> <%= article.keywords.map(&:name).sort.join(", ") %> </td>
-			<td> <%= article.link_source %> </td>
-			<td> <%= article.title %> </td>
-			<td> <%= article.description %> </td>
-			<td> <%= article.image_link %> </td>
-			<td> <%= link_to 'Show', article_path(article) %> </td>
-			<td> <%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: 'Are you sure?' }  %> </td>
-		</tr>
-	<% end %>
-</table>
+<%= render 'article', obj: @articles %>
 
 <%= link_to 'New article', new_article_path %>

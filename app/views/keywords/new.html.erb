@@ -1,12 +1,5 @@
-<h1>New Keyword<h1>
+<h1>New Keyword</h1>
 
-<%= form_for :keyword, url: keywords_path do |k| %>
-	<p>
-		<%= k.label :name %>
-		<%= k.text_field :name %>
-	</p>
-	
-	<p>
-	<%= k.submit %>
-	</p>
-<% end %>
+<%= render 'form' %>
+
+<%= link_to 'Back', keywords_path %>

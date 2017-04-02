@@ -10,7 +10,6 @@ class ArticlesController < ApplicationController
 
 	def new
 		@article = Article.new
-
 	end
 
 	def edit
@@ -18,17 +17,27 @@ class ArticlesController < ApplicationController
 
 	def create
 		@article = Article.new(article_params)
-
-		@article.save
-		redirect_to @article
+		@article.user = current_user
+		if @article.save
+			flash[:notice] = 'You shared your article!'
+			redirect_to articles_path
+		else
+			render :new			
+		end
 	end
 
 	def update
-		@article.update(article_params)
+		if @article.update(article_params)
+			flash[:notice] = 'Updated successfully'
+			redirect_to articles_path
+		else
+			render :edit
+		end	
 	end
 
 	def destroy
 		@article.destroy
+		flash[:notice] = 'Article successfully removed'
 		redirect_to articles_path
 
 	end

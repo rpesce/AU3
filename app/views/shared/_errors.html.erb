@@ -1,0 +1,8 @@
+<% if obj.errors.any? %>
+	<ul>
+		<h2> <%= pluralize(obj.errors.count, "error") %> prevented your article to be shared</h2>
+		<% obj.errors.full_messages.each do |msg| %>
+			<li> <%= msg %> </li>
+		<% end %>
+	</ul>
+<% end %>

@@ -1,1 +1,18 @@
-index.html.erb
+<h1> Keywords index </h1>
+
+<table>
+	<tr>
+		<th>Keywords</th>
+	</tr>
+
+	<% @keywords.each do |k| %>
+		<tr>
+			<td> <%= k.name %> </td>
+			<td> <%= link_to 'Show', keyword_path(k) %> </td>
+			<td> <%= link_to 'Edit', edit_keyword_path(k) %> </td>
+			<td> <%= link_to 'Delete', keyword_path(k), method: :delete, data: {confirm: 'Are you sure?' }  %> </td>
+		</tr>
+	<% end %>
+</table>
+
+<%= link_to 'New keyword', new_keyword_path %>

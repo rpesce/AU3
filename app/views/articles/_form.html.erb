@@ -1,0 +1,35 @@
+<%= render 'shared/errors', obj: @article %>
+
+<%= form_for :article, url: articles_path do |f| %>
+	<p>
+		<%= f.collection_check_boxes :keyword_ids, Keyword.all, :id, :name do |k| %>
+			<% k.label {k.check_box + k.text}%>
+		<% end %>
+		<p><%= link_to 'Add keyword', new_keyword_path %></p>
+
+	</p>
+
+	<p>
+		<%= f.label :link_source %><br />
+		<%= f.text_field :link_source %>
+	</p>
+
+	<p>
+		<%= f.label :title %><br />
+		<%= f.text_field :title %>
+	</p>
+
+	<p>
+		<%= f.label :description %><br />
+		<%= f.text_area :description %>
+	</p>	
+
+	<p>
+		<%= f.label :image_link %><br />
+		<%= f.text_field :image_link %>
+	</p>
+
+	<p>
+		<%= f.submit(@article.new_record? ? "Share article" : "Edit article info") %>
+	</p>
+<% end %>

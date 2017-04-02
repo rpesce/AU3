@@ -1,6 +1,13 @@
 <h1>Welcome#index</h1>
 <p>Find me in app/views/welcome/index.html.erb</p>
 
+
+
+
 <%= link_to 'Articles', controller: 'articles' %><br />
 
-<%= link_to 'logout', destroy_user_session_path, method: :delete %>
+<%= link_to 'Edit User', edit_user_registration_path %><br />
+
+<% if user_signed_in? %>
+	<%= link_to 'logout', destroy_user_session_path, method: :delete %>
+<% end %>
