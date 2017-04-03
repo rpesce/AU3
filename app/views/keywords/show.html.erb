@@ -1,8 +1,8 @@
-<h1>Show view</h1>
+<h1><%= "Category: " + @keyword.name %></h1>
+<% if user_signed_in? && current_user.admin? %>
+	<%= link_to "Edit category name", edit_keyword_path(@keyword) %>
+<% end %>
 
-<p>
-	<strong> Keyword </strong>
-	<%= @keyword.name %>
-</p>
+<%= render 'articles/article', obj: @keyword_articles %>
 
 <%= link_to 'Back', keywords_path %>

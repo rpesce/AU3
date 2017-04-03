@@ -1,3 +1,5 @@
+<%= render 'shared/errors', obj: @keyword %>
+
 <%= form_for :keyword, url: keywords_path do |k| %>
 	<p>
 		<%= k.label :name %>

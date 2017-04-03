@@ -6,6 +6,7 @@ class KeywordsController < ApplicationController
 	end
 
 	def show
+		@keyword_articles = @keyword.articles
 	end
 
 	def new
