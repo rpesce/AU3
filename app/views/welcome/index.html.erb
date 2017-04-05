@@ -4,10 +4,11 @@
 
 
 
-<%= link_to 'Articles', controller: 'articles' %><br />
-
+<%= link_to 'See all articles', controller: 'articles' %><br />
+<%= link_to 'Share a new article', new_article_path %> <br />
+<%= link_to 'See all keywords', controller: 'keywords' %> <br />
+<%= link_to 'Add a new keyword', new_keyword_path %> <br />
 <%= link_to 'Edit User', edit_user_registration_path %><br />
-
 <% if user_signed_in? %>
-	<%= link_to 'logout', destroy_user_session_path, method: :delete %>
+	<%= link_to 'Log out', destroy_user_session_path, method: :delete %>
 <% end %>
