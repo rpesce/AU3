@@ -6,4 +6,7 @@ class User < ApplicationRecord
          :omniauthable
 
   has_many :articles, dependent: :destroy
+  has_many :lists, dependent: :destroy
+  has_many :items, dependent: :destroy
+  has_many :keywords, dependent: :destroy
 end

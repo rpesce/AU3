@@ -8,9 +8,11 @@
 	<% @keywords.each do |k| %>
 		<tr>
 			<td> <%= k.name %>, <%= pluralize(k.articles.count, "article") %> </td>
-			<td> <%= link_to 'Show', keyword_path(k) %> </td>
-			<td> <%= link_to 'Edit', edit_keyword_path(k) %> </td>
-			<td> <%= link_to 'Delete', keyword_path(k), method: :delete, data: {confirm: 'Are you sure?' }  %> </td>
+			<% if user_signed_in? && current_user == k.user || current_user.admin? %>
+				<td> <%= link_to 'Show', keyword_path(k) %> </td>
+				<td> <%= link_to 'Edit', edit_keyword_path(k) %> </td>
+				<td> <%= link_to 'Delete', keyword_path(k), method: :delete, data: {confirm: 'Are you sure?' }  %> </td>
+			<% end %>
 		</tr>
 	<% end %>
 </table>

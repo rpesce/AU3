@@ -18,6 +18,7 @@ class KeywordsController < ApplicationController
 
 	def create
 		@keyword = Keyword.new(keyword_params)
+		@keyword.user = current_user
 		if @keyword.save
 			flash[:notice] = 'Keyword added'
 			redirect_to @keyword
