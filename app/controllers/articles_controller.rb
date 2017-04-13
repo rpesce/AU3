@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-	before_action :set_article, only: [:show, :edit, :update, :destroy]
+	before_action :set_article, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
 	def index
 		@articles = Article.all
@@ -39,7 +39,17 @@ class ArticlesController < ApplicationController
 		@article.destroy
 		flash[:notice] = 'Article successfully removed'
 		redirect_to articles_path
+	end
 
+	def upvote
+		@article.upvote_by current_user
+		redirect_to :back #Use JavaScript later to refresh
+
+	end
+
+	def downvote
+		@article.downvote_by current_user
+		redirect_to :back #Use JavaScript later to refresh
 	end
 
 private 

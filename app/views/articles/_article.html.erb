@@ -5,6 +5,7 @@
 		<th>Title</th>
 		<th>Description</th>
 		<th>Image link</th>
+		<th>Votes</th>
 	</tr>
 
 	<% obj.each do |article| %>
@@ -17,6 +18,20 @@
 			<td> <%= article.title %> </td>
 			<td> <%= article.description %> </td>
 			<td> <%= article.image_link %> </td>
+			
+			<% if user_signed_in? %>
+			<td>
+				<%= link_to like_article_path(article), method: :put do %>
+					Like
+					<%= article.get_upvotes.size %>
+				<% end %>
+
+				<%= link_to dislike_article_path(article), method: :put do %>
+					Unlike
+					<%= article.get_downvotes.size %>
+				<%end%>
+			<% end %>			
+			</td>
 			
 			<% if user_signed_in? && current_user == article.user %>
 				<td> <%= link_to 'Show', article_path(article) %> </td>

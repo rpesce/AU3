@@ -3,6 +3,7 @@ class Article < ApplicationRecord
 	has_many :article_keywords
 	has_many :keywords, through: :article_keywords
 	before_save { self.title = title.capitalize }
+	acts_as_votable
 
 	validates :link_source, :title, :description, :image_link, :keyword_ids, :user_id, presence: true
 	validates :link_source, :title, uniqueness: { case_sensitive: false }, on: :update

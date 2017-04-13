@@ -9,4 +9,6 @@ class User < ApplicationRecord
   has_many :lists, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :keywords, dependent: :destroy
+  acts_as_voter
+
 end

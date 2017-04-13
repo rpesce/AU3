@@ -9,16 +9,21 @@
         <th><%= list.name %></th>
       </tr>
       <% if user_signed_in? && current_user == list.user || current_user.admin? %>
-        <tr>
-          <td> <%= link_to 'Show', list %> | <%= link_to 'Edit', edit_list_path(list) %> |  <%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %> </td>
-        </tr>
+        <th>
+          <%= link_to 'Show', list %> | <%= link_to 'Edit', edit_list_path(list) %> |  <%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </th>
       <% end %>
+      <tr>
+        <th>Name</th>
+        <th>Votes</th>
+      </tr>
     </thead>
 
     <tbody>
       <% list.items.all.each do |i| %>
         <tr>
           <td> <%= i.name %></td>
+          <td> <%= i.get_likes.size %></td>
         </tr>
       <% end %>
     </tbody>
