@@ -1,6 +1,6 @@
 <%= render 'shared/errors', obj: @keyword %>
 
-<%= form_for :keyword, url: keywords_path do |k| %>
+<%= form_for @keyword do |k| %>
 	<p>
 		<%= k.label :name %>
 		<%= k.text_field :name %>

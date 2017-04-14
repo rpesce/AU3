@@ -1,11 +1,13 @@
 <%= render 'shared/errors', obj: @article %>
 
-<%= form_for :article, url: articles_path do |f| %>
+<%= form_for @article do |f| %>
 	<p>
 		<%= f.collection_check_boxes :keyword_ids, Keyword.all, :id, :name do |k| %>
 			<% k.label {k.check_box + k.text}%>
 		<% end %>
-		<p><%= link_to 'Add keyword', new_keyword_path %></p>
+		<p>
+			<%= link_to 'Add keyword', new_keyword_path %>
+		</p>
 
 	</p>
 
@@ -30,6 +32,6 @@
 	</p>
 
 	<p>
-		<%= f.submit(@article.new_record? ? "Share article" : "Edit article info") %>
+		<%= f.submit(@article.new_record? ? "Share article" : "Alterate") %>
 	</p>
 <% end %>

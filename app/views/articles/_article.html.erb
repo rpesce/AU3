@@ -10,7 +10,6 @@
 
 	<% obj.each do |article| %>
 		<tr>
-			<!-- <td> <%= article.keywords.map(&:name).sort.join(", ") %> </td> EXAMPLE FROM WEB -->
 			<% if article.keywords.any? %>
 				<td> <%= render article.keywords %> </td>
 			<% end %>
@@ -30,10 +29,10 @@
 					Unlike
 					<%= article.get_downvotes.size %>
 				<%end%>
-			<% end %>			
 			</td>
+			<% end %>			
 			
-			<% if user_signed_in? && current_user == article.user %>
+			<% if user_signed_in? && current_user == article.user || current_user.admin? %>
 				<td> <%= link_to 'Show', article_path(article) %> </td>
 				<td> <%= link_to 'Edit', edit_article_path(article) %> </td>
 				<td> <%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: 'Are you sure?' }  %> </td>

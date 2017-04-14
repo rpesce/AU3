@@ -2,6 +2,8 @@ class Item < ApplicationRecord
 	belongs_to :list
 	belongs_to :user
 	acts_as_votable
+	default_scope { order(:cached_votes_score => :desc) } 
+
 
 
 	validates :name, :image, :link, :description, :list_id, presence: true
