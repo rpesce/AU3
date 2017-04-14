@@ -1,0 +1,40 @@
+<% @lists.each do |list| %>
+  <table>
+    <thead>
+      <tr>
+        <th><%= list.name %></th>
+      </tr>
+      <% if user_signed_in? && current_user == list.user || user_signed_in? && current_user.admin? %>
+        <th>
+          <%= link_to 'Show', list %> | <%= link_to 'Edit', edit_list_path(list) %> |  <%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </th>
+      <% end %>
+      <tr>
+        <th>Name</th>
+        <th>Votes</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% list.items.all.each do |i| %>
+        <tr>
+          <td> <%= i.name %></td>
+          <td> <%= i.get_likes.size %></td>
+          <% if user_signed_in? %>
+            <td>
+              <%= link_to like_item_path(i), method: :put do %>
+                Upvote
+                <%= i.get_upvotes.size %>
+              <% end %>
+
+              <%= link_to dislike_item_path(i), method: :put do %>
+                Downvote
+                <%= i.get_downvotes.size %>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

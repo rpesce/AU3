@@ -1,32 +1,31 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
-
+ <h1><%= link_to 'About users', root_path %></h1>
 
 <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
-
-
-
-
-<%= link_to 'Articles', controller: 'articles' %><br />
-<%= link_to 'New article', new_article_path %> <br />
 <br />
-<%= link_to 'Keywords', controller: 'keywords' %> <br />
-<%= link_to 'New keyword', new_keyword_path %> <br />
+<%= link_to 'Sign in', new_user_session_path %>
 <br />
-<%= link_to 'Lists', controller: 'lists' %> <br />
-<%= link_to 'New list', new_list_path %> <br />
-<br />
-<%= link_to 'Items', controller: 'items' %> <br />
-<%= link_to 'New item', new_item_path %> <br />
-<br />
-<%= link_to 'Edit User', edit_user_registration_path %><br />
 <% if user_signed_in? %>
+	<%= link_to 'Edit User', edit_user_registration_path %> | 
 	<%= link_to 'Log out', destroy_user_session_path, method: :delete %>
 <% end %>
+<br />
+<br />
+<%= link_to 'Articles', controller: 'articles' %>
+<br />
+<%= link_to 'Lists', controller: 'lists' %>
+<br />
+<%= link_to 'Categories', controller: 'keywords' %>
+<br />
 
-<div
-  class="fb-like"
-  data-share="true"
-  data-width="450"
-  data-show-faces="true">
-</div>
+<%= render 'articles/article', obj: @articles %>
+<br />
+<%= render 'lists/list' %>
+
+
+
+
+
+
+
+<br />
+<%= link_to 'Items', controller: 'items' %>
