@@ -1,5 +1,7 @@
 class KeywordsController < ApplicationController
 	before_action :set_keyword, only: [:show, :edit, :update, :destroy]
+	before_action :require_admin, only: [:new, :edit, :create, :update, :destroy]
+
 
 	def index
 		@keywords = Keyword.all

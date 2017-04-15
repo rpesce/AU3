@@ -1,31 +1,44 @@
- <h1><%= link_to 'About users', root_path %></h1>
+<div class="welcome">
+	<div class="welcome__background">
+		<div class="welcome__background__size">
+			<div class="welcome__background__image">
+				<div class="welcome__text-block">
+					<h1>Welcome!</h1>
+					<h2>This is a collaborative hub of sources for UX Designers</h2>
+				</div>
+				<div class="welcome__steps">
+					<div class="welcome__steps-image">
+						<div class="welcome__steps-image__position">
+							<img src="http://wfarm1.dataknet.com/static/resources/icons/set28/7f8535d7.png">
+						</div>
+						<div class="welcome__steps-image__position">
+							<img src="http://wfarm1.dataknet.com/static/resources/icons/set28/7f8535d7.png">
+						</div>
+						<div class="welcome__steps-image__position">
+							<img src="http://wfarm1.dataknet.com/static/resources/icons/set28/7f8535d7.png">
+						</div>
+					</div>
+					<div class="welcome__steps-description">
+						<div class="header__steps-description__position">
+							<p>Read relevant articles every day</p>
+						</div>
+						<div class="welcome__steps-description__position">
+							<p>find information on lists curated by users</p>
+						</div>
+						<div class="welcome__steps-description__position">
+							<p>Contribute to your pairs by upvoting os sharing interesting resources</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-<%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
-<br />
-<%= link_to 'Sign in', new_user_session_path %>
-<br />
-<% if user_signed_in? %>
-	<%= link_to 'Edit User', edit_user_registration_path %> | 
-	<%= link_to 'Log out', destroy_user_session_path, method: :delete %>
-<% end %>
-<br />
-<br />
-<%= link_to 'Articles', controller: 'articles' %>
-<br />
-<%= link_to 'Lists', controller: 'lists' %>
-<br />
-<%= link_to 'Categories', controller: 'keywords' %>
-<br />
+<div class="articles">
+	<%= render 'articles/article', obj: @articles %>
+</div>
 
-<%= render 'articles/article', obj: @articles %>
-<br />
-<%= render 'lists/list' %>
-
-
-
-
-
-
-
-<br />
-<%= link_to 'Items', controller: 'items' %>
+<div class="lists">
+	<%= render 'lists/list' %>
+</div>

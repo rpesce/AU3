@@ -1,21 +1,50 @@
-<h1>Show view</h1>
+<div class="header">
+	<h1 class="header__title"><%= "#{@article.title}" %></h1>
+</div>
+<table class="table">
+	<tr class="table table__row">
+		<th class="table table__header">Keywords</th>
+		<th class="table table__header">Title</th>
+		<th class="table table__header">Description</th>
+		<th class="table table__header">Image link</th>
+		<th class="table table__header">Votes</th>
+	</tr>
 
-<p>
-	<strong> Keywords </strong>
-	<!-- <%= @article.keywords.map(&:name).sort.join(", ") %> EXAMPLE TAKEN FROM WEB -->
-	<%= render @article.keywords %>
-	
-	<strong> Link Source </strong>
-	<%= @article.link_source %>
-
-	<strong> Title </strong>
-	<%= @article.title %>
-
-	<strong> Description </strong>
-	<%= @article.description %>
-
-	<strong> Image link </strong>
-	<%= @article.image_link %>
-</p>
-
-<%= link_to 'Back', articles_path %>
+	<tr class="table table__row">
+		<% if @article.keywords.any? %>
+			<td class="table table__data"> <%= render @article.keywords %> </td>
+		<% end %>
+		<td class="table table__data"> <%= @article.title %> </td>
+		<td class="table table__data"> <%= @article.description %> </td>
+		<td class="table table__data"> <%= @article.image_link %> </td>
+			
+		<% if user_signed_in? %>
+			<td class="table table__data">
+				<%= link_to like_article_path(@article), method: :put do %>
+					Like
+					<%= @article.get_upvotes.size %>
+				<% end %>
+			</td>
+			<td class="table table__data">
+				<%= link_to dislike_article_path(@article), method: :put do %>
+					Unlike
+					<%= @article.get_downvotes.size %>
+				<%end%>
+			</td>
+		<% else %>
+			<td class="table table__data">
+				Like
+				<%= @article.get_upvotes.size %>
+			</td>
+			<td class="table table__data">
+				Unlike
+				<%= @article.get_downvotes.size %>
+			</td>
+		<% end %>			
+			
+		<% if user_signed_in? && current_user == @article.user || user_signed_in? && current_user.admin? %>
+			<td class="table table__data"> <%= link_to 'Edit', edit_article_path(@article) %> </td>
+			<td class="table table__data"> <%= link_to 'Delete', article_path(@article), method: :delete, data: {confirm: 'Are you sure?' }  %> </td>
+		<% end %>
+	</tr>
+</table>

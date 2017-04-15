@@ -2,32 +2,35 @@
 
 <%= form_for @article do |f| %>
 	<p>
+		<%= f.label :categories %>
 		<%= f.collection_check_boxes :keyword_ids, Keyword.all, :id, :name do |k| %>
 			<% k.label {k.check_box + k.text}%>
 		<% end %>
-		<p>
-			<%= link_to 'Add keyword', new_keyword_path %>
-		</p>
+		<% if current_user.admin? %>
+			<p>
+				<%= link_to 'Add category', new_keyword_path %>
+			</p>
+		<% end %>
 
 	</p>
 
 	<p>
-		<%= f.label :link_source %><br />
+		<%= f.label :link_source %>
 		<%= f.text_field :link_source %>
 	</p>
 
 	<p>
-		<%= f.label :title %><br />
+		<%= f.label :title %>
 		<%= f.text_field :title %>
 	</p>
 
 	<p>
-		<%= f.label :description %><br />
+		<%= f.label :description %>
 		<%= f.text_area :description %>
 	</p>	
 
 	<p>
-		<%= f.label :image_link %><br />
+		<%= f.label :image_link %>
 		<%= f.text_field :image_link %>
 	</p>
 

@@ -1,50 +1,48 @@
-<table>
-	<tr>
-		<th>Keywords</th>
-		<th>Link Source</th>
-		<th>Title</th>
-		<th>Description</th>
-		<th>Image link</th>
-		<th>Votes</th>
+<table class="table">
+	<tr class="table table__row">
+		<th class="table table__header">Keywords</th>
+		<th class="table table__header">Title</th>
+		<th class="table table__header">Description</th>
+		<th class="table table__header">Image link</th>
+		<th class="table table__header">Votes</th>
 	</tr>
 
 	<% obj.each do |article| %>
-		<tr>
+		<tr class="table table__row">
 			<% if article.keywords.any? %>
-				<td> <%= render article.keywords %> </td>
+				<td class="table table__data"> <%= render article.keywords %> </td>
 			<% end %>
-			<td> <%= article.link_source %> </td>
-			<td> <%= article.title %> </td>
-			<td> <%= article.description %> </td>
-			<td> <%= article.image_link %> </td>
+			<td class="table table__data"> <%= link_to article.title, article_path(article) %> </td>
+			<td class="table table__data"> <%= article.description %> </td>
+			<td class="table table__data"> <%= article.image_link %> </td>
 			
 			<% if user_signed_in? %>
-			<td>
+			<td class="table table__data">
 				<%= link_to like_article_path(article), method: :put do %>
 					Like
 					<%= article.get_upvotes.size %>
 				<% end %>
-
+			</td>
+			<td class="table table__data">
 				<%= link_to dislike_article_path(article), method: :put do %>
 					Unlike
 					<%= article.get_downvotes.size %>
 				<%end%>
 			</td>
 			<% else %>
-			<td>
+			<td class="table table__data">
 				Like
 				<%= article.get_upvotes.size %>
 			</td>
-			<td>
+			<td class="table table__data">
 				Unlike
 				<%= article.get_downvotes.size %>
 			</td>
 			<% end %>			
 			
-			<% if user_signed_in? && current_user == article.user || user_signed_in? && current_user.admin? %>
-				<td> <%= link_to 'Show', article_path(article) %> </td>
-				<td> <%= link_to 'Edit', edit_article_path(article) %> </td>
-				<td> <%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: 'Are you sure?' }  %> </td>
+			<% if user_signed_in? && current_user.admin? %>
+				<td class="table table__data"> <%= link_to 'Edit', edit_article_path(article) %> </td>
+				<td class="table table__data"> <%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: 'Are you sure?' }  %> </td>
 			<% end %>
 		</tr>
 	<% end %>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AU3</title>
+    <title>About Users | Lists | UX | Resources</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -27,8 +27,13 @@
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
     </script>
-    <%= render 'layouts/messages' %>
-    <%= yield %>
+    
+    <div class="container">
+        <%= render 'layouts/messages' %>
+        <%= render 'layouts/navbar' %>
+        <%= yield %>    
+    </div>
+
     <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :require_admin, only: [:new, :edit, :create, :update, :destroy]
 
   # GET /lists
   # GET /lists.json
